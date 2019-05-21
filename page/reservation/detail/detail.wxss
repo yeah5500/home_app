@@ -1,0 +1,58 @@
+@import "../../../wxParse/wxParse.wxss";
+
+.content-list {
+    box-shadow: 0 4rpx 4rpx #ddd;
+    padding: 0 30rpx;
+}
+
+.content-list .subtitle {
+    padding: 30rpx 0;
+    font-weight: 600;
+}
+
+.content-list .price {
+    padding: 30rpx;
+}
+
+.num-btn {
+    display: inline-block;
+    width: 48rpx;
+    height: 48rpx;
+    text-align: center;
+    line-height: 48rpx;
+}
+
+.num-btn:active {
+    background: rgba(0,0,0,0.05);
+}
+
+.yuyue-num {
+    display: inline-block;
+    width: 50rpx;
+    text-align: center;
+}
+
+.footer-box {
+    height: 92rpx;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -4rpx 20rpx #ddd;
+}
+
+.footer .price {
+    padding: 0 30rpx;
+    line-height: 92rpx;
+}
+
+.footer button {
+    border-radius: 0;
+}
+
+.footer button::after {
+    border: 0;
+}
+

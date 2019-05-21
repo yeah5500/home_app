@@ -1,0 +1,12 @@
+<form bindsubmit="onPushSubmit" reportSubmit="true">
+    <view class="content bgwhite m10">
+        <textarea name="remark" placeholder="您宝贵的建议，是我们前行的动力"></textarea>
+    </view>
+    <view class="phone bgwhite m10">
+        <input maxlength="11" name="mobile" placeholder="联系电话,选填" type="number" value="{{tel}}"></input>
+        <text wx:if="{{tel!=''}}">自动填入当前绑定手机号 如需保密请删除</text>
+    </view>
+    <view class="m20">
+        <button disabled="{{disabled}}" formType="submit" hoverClass="none" type="primary">提交</button>
+    </view>
+</form>

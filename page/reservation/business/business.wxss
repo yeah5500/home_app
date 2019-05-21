@@ -1,0 +1,294 @@
+
+
+page {
+    background: #ffffff;
+}
+
+button {
+    border: none;
+}
+
+button::after {
+    display: none;
+}
+
+.mer-img {
+    width: 100%;
+    height: 280rpx;
+}
+
+.mer-img image {
+    width: 100%;
+    height: 280rpx;
+}
+
+.mer-con {
+    padding: 72rpx 24rpx 24rpx;
+    position: relative;
+}
+
+.mer-info {
+    width: 108rpx;
+    height: 108rpx;
+    border-radius: 50%;
+    position: absolute;
+    left: 24rpx;
+    top: -54rpx;
+    z-index: 999;
+}
+
+.mer-info image {
+    width: 108rpx;
+    height: 108rpx;
+    border-radius: 50%;
+}
+
+.mer-name {
+    margin-bottom: 20rpx;
+}
+
+.mer-name-mingzi {
+    max-width: 500rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.caozuo {
+    border: 1rpx solid #4395FF;
+    border-radius: 8rpx;
+    margin-left: 25rpx;
+    width: 88rpx;
+    height: 54rpx;
+    text-align: center;
+    line-height: 54rpx;
+}
+
+.mer-fenx {
+    outline: none;
+    background: #ffffff;
+    font-size: 26rpx!important;
+    padding: 0!important;
+    border: 1rpx solid#4395FF;
+}
+
+.pay-order {
+    padding: 5rpx 13rpx;
+    border-radius: 8rpx;
+    background: #4395FF;
+}
+
+.yishou {
+    margin-bottom: 20rpx;
+    align-items: flex-end;
+}
+
+.yishou-view {
+    margin-right: 40rpx;
+}
+
+.security-view {
+    margin-right: 30rpx;
+}
+
+.security-view image {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+    margin-top: -5rpx;
+}
+
+.fenge {
+    width: 100%;
+    height: 10rpx;
+    background: #f5f8fa;
+}
+
+.content-head {
+    height: 82rpx;
+    border-bottom: 1rpx solid #dfdfdf;
+}
+
+.content-head-title {
+    height: 100%;
+    line-height: 82rpx;
+    width: 25%;
+    text-align: center;
+}
+
+.content-head-title.active {
+    color: #4395FF;
+    border-bottom: 4rpx solid#4395FF;
+}
+
+.server {
+    padding: 0 24rpx;
+}
+
+.server-list {
+    margin-top: 30rpx;
+}
+
+.server-list-title {
+    margin-bottom: 30rpx;
+}
+
+.server-list-con {
+    flex-wrap: wrap;
+}
+
+.server-item {
+    flex-direction: column;
+    justify-content: center;
+    margin: 15rpx 0;
+    width: 25%;
+}
+
+.server-item-img {
+    width: 96rpx;
+    height: 96rpx;
+}
+
+.search {
+    width: 100%;
+    height: 68rpx;
+    padding: 0 20rpx 0 35rpx;
+    background: #eeeeee;
+    border-radius: 34rpx;
+    margin: 30rpx 0;
+}
+
+.search-left {
+    background: #eeeeee;
+}
+
+.search-img {
+    width: 35rpx;
+    height: 35rpx;
+}
+
+.search-right {
+    width: 14rpx;
+    height: 25rpx;
+}
+
+.eval-head {
+    justify-content: center;
+    margin: 30rpx 0;
+}
+
+.eval-head-num {
+    font-size: 100rpx;
+    margin-right: 35rpx;
+    font-weight: 500;
+}
+
+.eval-label {
+    padding: 0 30rpx;
+    flex-wrap: wrap;
+}
+
+.eval-label-item {
+    padding: 0 15rpx;
+    height: 53rpx;
+    line-height: 53rpx;
+    margin: 0 16rpx 14rpx 0;
+    background: #f3f3f3;
+    border-radius: 27rpx;
+}
+
+.eval-label-item:nth-child(1) {
+    padding: 0 22rpx;
+}
+
+.eval-label-item.active {
+    background: #4395FF;
+    color: #ffffff;
+}
+
+.eval-user-list {
+    padding: 0 24rpx;
+    margin-top: 40rpx;
+}
+
+.eval-user-list:nth-last-of-type(1) {
+    margin-bottom: 100rpx;
+}
+
+.eval-user-info {
+    width: 76rpx;
+    height: 76rpx;
+    border-radius: 38rpx;
+    margin-right: 25rpx;
+}
+
+.eval-user-txt {
+    margin-top: 40rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.eval-user-imglist {
+    margin-top: 20rpx;
+    flex-wrap: wrap;
+}
+
+.eval-user-img {
+    width: 165rpx;
+    height: 165rpx;
+    border-radius: 6rpx;
+    margin: 4rpx;
+}
+
+.eval-mer {
+    width: 616rpx;
+    padding: 16rpx 47rpx 16rpx 25rpx;
+    background: #fafafa;
+    border-radius: 6rpx;
+    margin-top: 20rpx;
+    position: relative;
+}
+
+.eval-mer::before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 20rpx;
+    top: -42rpx;
+    background: transparent;
+    border-bottom: 24rpx solid #fafafa;
+    border-top: 24rpx solid transparent;
+    border-left: 14rpx solid transparent;
+    border-right: 14rpx solid transparent;
+}
+
+.eval-label-foot {
+    margin-top: 30rpx;
+    color: #4395FF;
+}
+
+.merchant {
+    padding: 30rpx 32rpx 100rpx;
+}
+
+.merchant-item {
+    margin-bottom: 40rpx;
+}
+
+.merchant-item-title {
+    margin-bottom: 20rpx;
+}
+
+.merchant-item-con {
+    flex-wrap: wrap;
+}
+
+.merchant-item-img {
+    width: 140rpx;
+    height: 90rpx;
+    margin: 0 24rpx 0 8rpx;
+    border-radius: 10rpx;
+}

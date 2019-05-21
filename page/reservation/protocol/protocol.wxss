@@ -1,0 +1,31 @@
+page {
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.note {
+    padding: 30rpx;
+}
+
+strong {
+    font-weight: bold;
+}
+
+page image {
+    max-width: 100%!important;
+}
+
+.btn-box {
+    height: 92rpx;
+}
+
+.order-btn {
+    width: 750rpx;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+}
+
+.order-btn button {
+    border-radius: 0;
+}

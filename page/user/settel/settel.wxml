@@ -1,0 +1,15 @@
+<form bindsubmit="formSubmit" reportSubmit="true">
+    <view class="head" wx:if="{{bind_tel}}">您当前绑定的手机号为<text>{{mobile}}</text>,您可以更换新的手机号码</view>
+    <view class="head" wx:else>为了保障您的权益，以及服务订单信息统一，请绑定手机号码</view>
+    <view class="form-cont">
+        <input bindinput="check_phone_bind" name="user_phone" placeholder="请填写您的手机号码" type="number"></input>
+        <text class="tsmsg">{{tsmsg}}</text>
+    </view>
+    <view class="form-cont flex">
+        <input class="sub" name="user_phone_yzm" placeholder="请填写您的验证码"></input>
+        <button bindtap="send_phone_code_bind" disabled="{{yzm_btn_disabled}}" size="mini" type="primary">{{yzm_btn_text}}</button>
+    </view>
+    <view class="smbit-btn">
+        <button formType="submit" hoverClass="none" type="primary">立即绑定</button>
+    </view>
+</form>

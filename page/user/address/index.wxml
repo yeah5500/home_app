@@ -1,0 +1,124 @@
+<view class="invoice-content {{showPage=='list'?'':'hidden'}}">
+    <view class="" wx:if="{{isAli?false:isCallback&&!isUseLocation}}">
+        <view catchtap="chooseAppAddress" class="get-address arrowR mb10">
+            <text class="mr5 iconfont icon-location"></text>
+            <text>获取{{isAli?'支付宝':'微信'}}收货地址</text>
+        </view>
+    </view>
+    <view class="sub">
+        <radio-group bindchange="radioChange">
+            <view class="mb10" wx:for="{{list}}" wx:key="{{index}}">
+                <view class="invoice-item">
+                    <label class="sub flex mr10">
+                        <radio class="mr5" value="{{index}}" wx:if="{{isCallback}}"></radio>
+                        <view class="sub mr10">
+                            <view class="lineText">
+                                <text>{{item.name}}</text>
+                                <text class="ml5">{{item.gender==1?'先生':'女士'}}</text>
+                                <text class="ml5">{{item.mobile}}</text>
+                                <text class="ml5 title-tag green gridFour" wx:if="{{item.label==1}}">家里</text>
+                                <text class="ml5 title-tag green gridFour" wx:if="{{item.label==2}}">学校</text>
+                                <text class="ml5 title-tag green gridFour" wx:if="{{item.label==3}}">公司</text>
+                                <text class="ml5 title-tag green gridFour" wx:if="{{item.label==4}}">住处</text>
+                                <text class="ml5 title-tag green gridFour" wx:if="{{item.label==5}}">其它</text>
+                                <view catchtap="edit" class="bianji fr" data-id="{{item.id}}" wx:if="{{isCallback}}">
+                                    <text class="mr5 iconfont icon-write grey"></text>
+                                    <text></text>
+                                </view>
+                            </view>
+                            <view class="grey f14">
+                                <text class="black" wx:if="{{!isCallback?false:item.is_default==0?false:true}}">【默认地址】</text>
+                                <text>{{item.address}}{{item.detail_info}}</text>
+                            </view>
+                        </view>
+                    </label>
+                </view>
+                <view class="flex place-bianji gridXt f14 {{isCallback==true?'hidden':''}}">
+                    <label>
+                        <radio checked="{{item.is_default==1?true:false}}" class="mr5" value="{{index}}"></radio>
+                        <text class="grey"> 设为默认</text>
+                    </label>
+                    <view>
+                        <view catchtap="edit" class="bianji" data-id="{{item.id}}">
+                            <text class="mr5 iconfont icon-write grey"></text>
+                            <text>编辑</text>
+                        </view>
+                        <view catchtap="remove" class="bianji" data-id="{{item.id}}">
+                            <text class="mr5 iconfont icon-delete grey"></text>
+                            <text>删除</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </radio-group>
+        <view class="{{list.length>0?'hidden':''}}">
+            <view class="noInvoiceMsg">
+                <view class="tc">
+                    <view class="noInvoice-ico green">
+                        <text class="iconfont icon-locationfill"></text>
+                    </view>
+                    <view>没有收货地址</view>
+                    <view class="f12">点击新增按钮即可添加</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="address-add-box">
+        <view class="address-add">
+            <button catchtap="add" class="add-address-btn" type="primary">+ 新增地址</button>
+        </view>
+    </view>
+</view>
+<view class="{{showPage=='form'?'':'hidden'}}">
+    <form bindsubmit="formSubmit">
+        <view class="flex invoice-item gridXb">
+            <view class="adress-leftTit grey">联系人：</view>
+            <view class="sub ml10">
+                <view class="gridXb mb15">
+                    <input class="add-userName" name="name" placeholder="姓名" placeholderClass="grey" value="{{name}}"></input>
+                </view>
+                <view>
+                    <text catchtap="chooseGender" class="title-tag {{gender==1?'green':'grey'}}" data-gender="1">先生</text>
+                    <text catchtap="chooseGender" class="title-tag {{gender==2?'green':'grey'}}" data-gender="2">女士</text>
+                </view>
+            </view>
+        </view>
+        <view class="flex invoice-item gridXb">
+            <view class="grey">电 话： </view>
+            <view class="sub ml10 flex selectCountry">
+                <picker bindchange="pickerChange" class=" " range="{{pickerData}}" rangeKey="country" value="{{pickerIndex}}">
+                    <view class="picker">
+                        {{pickerData[pickerIndex].country}}
+                    </view>
+                </picker>
+                <input name="mobile" placeholder="{{pickerData[pickerIndex].placeholder}}" type="number" value="{{mobile}}"></input>
+            </view>
+        </view>
+        <view catchtap="location" class="flex invoice-item gridXb">
+            <view class="ads-detailTit grey">小区/大厦/学校</view>
+            <view class="selAdd sub ml15 f14">
+                <text>{{address}}</text>
+            </view>
+            <view class="ml10 toMap">
+                <text class="iconfont icon-locationfill"></text>
+            </view>
+        </view>
+        <view class="flex invoice-item gridXb">
+            <view class="grey">补充信息：</view>
+            <view class="sub ml10">
+                <input class="f14" name="detail_info" placeholder="如门牌号等" type="text" value="{{detail_info}}"></input>
+            </view>
+        </view>
+        <view class=" invoice-item addTag">
+            <text catchtap="chooseLabel" class="title-tag {{label==1?'green':'grey'}}" data-label="1">家里</text>
+            <text catchtap="chooseLabel" class="title-tag {{label==2?'green':'grey'}}" data-label="2">学校</text>
+            <text catchtap="chooseLabel" class="title-tag {{label==3?'green':'grey'}}" data-label="3">公司</text>
+            <text catchtap="chooseLabel" class="title-tag {{label==4?'green':'grey'}}" data-label="4">住处</text>
+            <text catchtap="chooseLabel" class="title-tag {{label==5?'green':'grey'}}" data-label="5">其它</text>
+        </view>
+        <view class="flex btn-box">
+            <button catchtap="cancel" class="sub f16" disabled="{{buttonIsDisabled}}" type="warn">取消</button>
+            <button class="sub f16" disabled="{{buttonIsDisabled}}" formType="submit" loading="{{false}}" type="primary">保存</button>
+        </view>
+    </form>
+</view>

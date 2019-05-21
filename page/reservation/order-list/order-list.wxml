@@ -1,0 +1,84 @@
+<block wx:if="{{data}}">
+    <view catchtap="changeMenu" class="order-tit-box" wx:if="{{active!=0}}">
+        <view class="order-tit-state {{active==1?'active':''}}" id="1">待支付</view>
+        <view class="order-tit-state {{active==2?'active':''}}" id="2">待服务</view>
+        <view class="order-tit-state {{active==3?'active':''}}" id="3">服务中</view>
+        <view class="order-tit-state {{active==4?'active':''}}" id="4">已完成</view>
+        <view class="order-tit-state {{active==5?'active':''}}" id="5">退款</view>
+    </view>
+    <view class="order">
+        <view bindtap="orderDetail" class="order-list" data-active="{{active}}" data-id="{{item.id}}" wx:for="{{data}}" wx:key="{{index}}">
+            <view class="case-title gridXb flex">
+                <view class="case-name sub f16 lineText">{{item.title}}</view>
+                <text class="order-state" wx:if="{{item.code=='noPay'}}">待支付</text>
+                <text class="order-state success" wx:if="{{item.code=='closePay'}}">交易关闭</text>
+                <text class="order-state success" wx:if="{{item.code=='timeOut'}}">订单超时关闭</text>
+                <text class="order-state" wx:if="{{item.code=='waitAccept'}}">待商家接单</text>
+                <text class="order-state" wx:if="{{item.code=='waitOther'}}">待其他商家接单</text>
+                <text class="order-state" wx:if="{{item.code=='waitOffer'}}">待商家报价</text>
+                <text class="order-state" wx:if="{{item.code=='waitService'}}">待商家服务</text>
+                <text class="order-state success" wx:if="{{item.code=='complete'}}">已完成</text>
+                <text class="order-state success" wx:if="{{item.code=='waitComment'}}">待评价</text>
+                <text class="order-state success" wx:if="{{item.code=='noHandle'}}">{{item.status==7?'申诉':'投诉'}}处理中</text>
+                <text class="order-state success" wx:if="{{item.code=='handle'}}">{{item.status==7?'申诉':'投诉'}}已处理</text>
+                <text class="order-state" wx:if="{{item.code=='dealRefund'}}">退款处理中</text>
+                <text class="order-state" wx:if="{{item.code=='failRefund'}}">退款失败</text>
+                <text class="order-state success" wx:if="{{item.code=='isRefund'}}">已退款</text>
+            </view>
+            <view catchtap="onNavigateTap" class="business" data-url="../business/business?bid={{item.business}}&active={{active}}" wx:if="{{(item.sendstatus==1||item.sendstatus==3)&&item.status!=3&&item.status!=7}}">
+                <image class="business-logo" mode="aspectFill" src="{{item.headimg}}"></image>
+                <view class="business-name">{{item.companytitle}}</view>
+                <view class="business-tell">
+                    <text catchtap="onCallPhone" class="iconfont icon-dianhua" data-phone="{{item.companymobile}}"></text>
+                </view>
+            </view>
+            <view wx:if="{{(item.is_refund==3||item.earnest_is_refund==3)&&item.status!=3}}">
+                <view class="order-refunds">商家拒绝您的退款，点击详情查看拒绝理由</view>
+            </view>
+            <view class="order-info">
+                <view class="flex order-info-list">
+                    <view class="order-list-tit">
+                        <text class="blue iconfont icon-timefill"></text>预约时间:</view>
+                    <view class="sub">{{item.reseve_time}}</view>
+                </view>
+                <view class="flex order-info-list" wx:if="{{item.address}}">
+                    <view class="order-list-tit">
+                        <text class="green iconfont icon-locationfill"></text>预约地址:</view>
+                    <view class="sub">{{item.address}}</view>
+                </view>
+                <view class="flex order-info-list" wx:if="{{item.status!=3&&item.earnest_is_refund==0&&item.status!=4&&item.status!=7}}">
+                    <view class="order-list-tit">
+                        <text class="orange iconfont icon-infofill"></text>我的备注:</view>
+                    <view class="sub">{{item.remark?item.remark:'无'}}</view>
+                </view>
+                <view class="flex order-info-list" wx:if="{{item.code=='waitService'}}">
+                    <view class="order-list-tit">
+                        <text class="red iconfont icon-money"></text>商家报价</view>
+                    <view class="sub">{{item.business_price}}</view>
+                </view>
+            </view>
+            <view class="order-price" wx:if="{{item.status!=3&&item.status!=4&&item.status!=7}}">
+                <block wx:if="{{item.source==4}}">
+                    <text class="red" wx:if="{{item.earnest_order_amount}}">预约订金：￥{{item.earnest_order_amount}}</text>
+                    <text class="green" wx:else>免费</text>
+                </block>
+                <block wx:if="{{item.source==5}}">
+                    <text class="red" wx:if="{{item.order_amount}}">预约订金：￥{{item.order_amount}}</text>
+                    <text class="green" wx:else>免费</text>
+                </block>
+            </view>
+            <view class="btn-box gridXt" wx:if="{{item.status!=3||item.status==3&&item.sendstatus==3&&item.is_comment==0&&item.complaint==0||item.complaint==1&&item.handle==0}}">
+                <button catchtap="onMakePayTap" class="order-btn btn-fill" data-status="{{item.status}}" data-trade-no="{{item.number}}" wx:if="{{item.code=='noPay'}}">去支付</button>
+                <button catchtap="onNavigateTap" class="order-btn btn-fill" data-url="../evaluate/evaluate?id={{item.id}}&active={{active}}" wx:if="{{item.code=='waitComment'}}">去评价</button>
+                <button class="order-btn btn-fill" wx:if="{{(item.is_refund==3||item.earnest_is_refund==3)&&item.status!=3}}">查看详情</button>
+                <button catchtap="onNavigateTap" class="order-btn btn-fill" data-url="../cancel/cancel?tradeNo={{item.number}}&type=change&business={{item.business}}&source={{item.source}}&sendstatus={{item.sendstatus}}" wx:if="{{item.code=='waitOffer'&&item.type=='0'}}">换一家</button>
+                <button catchtap="onConfirmTap" class="order-btn btn-fill" data-tradeNo="{{item.number}}" wx:if="{{item.code=='waitService'}}">确认完成</button>
+                <button class="order-btn btn-fill" wx:if="{{item.code=='noHandle'||item.code=='handle'}}">查看{{item.status==7?'申诉':'投诉'}}进度</button>
+            </view>
+        </view>
+    </view>
+</block>
+<view class="no-content tc" wx:if="{{data==''}}">
+    <image class="no-content-img" mode="widthFix" src="http://www.ixiaochengxu.cc/resource/images/common/no-order.png"></image>
+    <view class="mt10">暂无订单信息~~</view>
+</view>

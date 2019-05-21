@@ -1,0 +1,131 @@
+<view class="drawBg">
+    <image class="drawBgPic" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/bg.jpg"></image>
+    <view class="adornBox ">
+        <view class="adorn adorn1">
+            <image mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/img1.png"></image>
+        </view>
+        <view class="adorn adorn2">
+            <image mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/img2.png"></image>
+        </view>
+        <view class="adorn adorn3">
+            <image mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/img3.png"></image>
+        </view>
+        <view class="adorn adorn4">
+            <image mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/img4.png"></image>
+        </view>
+    </view>
+    <view class="turnArea">
+        <view catchtap="onStartTap" class="startBtn">
+            <image class="startPic" mode="aspectfill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/new/btn.png"></image>
+        </view>
+        <view class="lightList">
+            <view class="lightItem smaLight "></view>
+            <view class="lightItem bigLight "></view>
+            <view class="lightItem smaLight "></view>
+            <view class="lightItem bigLight "></view>
+            <view class="lightItem smaLight "></view>
+            <view class="lightItem bigLight "></view>
+            <view class="lightItem smaLight "></view>
+            <view class="lightItem bigLight "></view>
+        </view>
+        <view class="turnBox " style="transition: transform {{animationData.duration}}ms {{animationData.timingFunction}};transform: rotate({{animationData.rotate}}deg);">
+            <view class="turnBgBox">
+                <view class="turnBg"></view>
+                <view class="turnBg"></view>
+                <view class="turnBg"></view>
+            </view>
+            <view class="awardlist">
+                <view class="awardItem" wx:for="{{this_jiangpin_data}}" wx:key="{{item.id}}">
+                    <view class="awardName mb10">{{item.jp_name}}</view>
+                    <image class="awardPic" mode="aspectFill" src="{{item.img_url}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="commonBox">
+    <view class="zfBlock tc">
+        <view class=" chance mb15">
+            <text>您今天还有</text>
+            <text class="cishu">{{this_market_data.user_data.user_jiang_num}}</text>
+            <text>次抽奖机会</text>
+        </view>
+        <view class="impDesc mb10">
+            <view class="descCon" wx:if="{{this_market_data.is_jifen_open==1}}">
+                <text>剩余积分：</text>
+                <text class="bai mr5">{{this_market_data.user_data.user_jiner_num}}</text>
+                <text>（每次抽奖消耗积分 <text class="bai">{{this_market_data.jifen_one_num}} / 次</text>）</text>
+            </view>
+            <view class="descCon">
+                <text>分享给好友可获得{{this_market_data.share_one_cishu}}次抽奖机会</text>
+            </view>
+        </view>
+        <view class="flex">
+            <button catchtap="onNavigateTap" class="zfBtn" data-url="../awardRecord/awardRecord">中奖记录</button>
+            <button class="zfBtn" openType="share">分享</button>
+        </view>
+    </view>
+    <view class="cell ">
+        <view class="titleBox lineText">中奖名单</view>
+        <view class="luckerList">
+            <scroll-view scrollY class="scrollBox" wx:if="{{luck_user_log.length}}">
+                <view class="lineText mb5" wx:for="{{luck_user_log}}" wx:key="{{item.id}}">
+                    <text class="luckName mr10 ">{{item.user_nickname}}</text>
+                    <text>获得了{{item.jp_name}}</text>
+                </view>
+            </scroll-view>
+            <view class="sgjiao">
+                <view class="leftTop"></view>
+                <view class="leftBot"></view>
+                <view class="rgTop"></view>
+                <view class="rgBot"></view>
+            </view>
+        </view>
+    </view>
+    <view class="cell ruleBox">
+        <view class="titleBox ">活动规则</view>
+        <view class="luckerList">
+            <rich-text nodes="{{this_market_data.huodong_guize}}"></rich-text>
+            <view class="sgjiao">
+                <view class="leftTop"></view>
+                <view class="leftBot"></view>
+                <view class="rgTop"></view>
+                <view class="rgBot"></view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="shade_bg tc" hidden="{{!prize}}">
+    <view class="luckBox">
+        <image class="luckPic" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/lucky.png"></image>
+        <view class="myAwardBox tc">
+            <image class="myAwardPic" mode="aspectFill" src="{{prizeImg}}"></image>
+            <view class="myAwardName">恭喜你获得</view>
+            <view class="chakan">{{prize}}</view>
+        </view>
+        <button class="xyyxBtn" openType="share"></button>
+    </view>
+    <view catchtap="onSetValueTap" class="closeBox" data-name="prize" data-value="">
+        <view class="close shunshi"></view>
+        <view class="close nishi"></view>
+    </view>
+</view>
+<view class="shade_bg tc" hidden="{{!isRequestFail}}">
+    <view class="">
+        <view class="unluckBox">
+            <image class="unluckPic" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/luck-draw/unlucky.png"></image>
+            <view class="tipBox">
+                <view>很遗憾~</view>
+                <view class="mt5">{{failMsg}}</view>
+            </view>
+        </view>
+        <view catchtap="onSetValueTap" class="closeBox" data-name="isRequestFail" data-value="{{false}}">
+            <view class="close shunshi"></view>
+            <view class="close nishi"></view>
+        </view>
+    </view>
+</view>
+<view class="no-content" hidden=" ">
+    <image class="no-content-img" mode="widthFix" src="http://www.ixiaochengxu.cc/resource/images/common/no-order.png"></image>
+    <view class="">活动已经结束，您来晚了哦~</view>
+</view>

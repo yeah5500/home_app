@@ -1,0 +1,58 @@
+{
+    "pages": [
+        "sd_135K/reservation/index/index",
+        "sd_135K/reservation/two-category/two-category",
+        "sd_135K/reservation/discover/discover",
+        "sd_135K/user/settel/settel",
+        "sd_135K/reservation/order-list/order-list",
+        "sd_135K/reservation/detail/detail",
+        "sd_135K/reservation/reseve/reseve",
+        "sd_135K/reservation/order-detail/order-detail",
+        "sd_135K/reservation/cooperation/cooperation",
+        "sd_135K/reservation/protocol/protocol",
+        "sd_135K/reservation/business/business",
+        "sd_135K/reservation/cancel/cancel",
+        "sd_135K/reservation/evaluate/evaluate",
+        "sd_135K/reservation/suggest/suggest",
+        "sd_135K/user/user_index/index",
+        "sd_135K/user/user_edit/index",
+        "sd_135K/user/setting/index",
+        "sd_135K/user/tips-info/index",
+        "sd_135K/user/address/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "titleBarColor": "#4395FF",
+        "navigationBarBackgroundColor": "#4395FF",
+        "defaultTitle": "附近家政",
+        "navigationBarTitleText": "附近家政",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#666",
+        "selectedColor": "#4395FF",
+        "backgroundColor": "#fff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "sd_135K/reservation/index/index",
+                "text": "首页",
+                "iconPath": "images/tabbar/icon/home.png",
+                "selectedIconPath": "images/tabbar/icon/home_g.png"
+            },
+         
+            {
+                "pagePath": "sd_135K/reservation/order-list/order-list",
+                "text": "订单",
+                "iconPath": "images/tabbar/icon/msg.png",
+                "selectedIconPath": "images/tabbar/icon/msg_g.png"
+            },
+            {
+                "pagePath": "sd_135K/user/user_index/index",
+                "text": "我的",
+                "iconPath": "images/tabbar/icon/user.png",
+                "selectedIconPath": "images/tabbar/icon/user_g.png"
+            }
+        ]
+    }
+}

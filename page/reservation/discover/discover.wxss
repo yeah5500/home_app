@@ -1,0 +1,197 @@
+
+
+.no-content-img {
+    width: 50%;
+}
+
+.ali-blue {
+    color: #2c9ef9;
+}
+
+.iconfont {
+    font-size: inherit;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.notanymore {
+    text-align: center;
+    color: #999;
+}
+
+.order-list {
+    width: 100%;
+    background: #fff;
+    border-radius: 6rpx;
+    margin-bottom: 20rpx;
+    padding: 0 30rpx;
+    word-break: break-all;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+.order-list:first-child {
+    margin-top: 0;
+}
+
+.avator {
+    display: inline;
+}
+
+.avator_img {
+    display: block;
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    margin-top: 20rpx;
+}
+
+.order-info {
+}
+
+.user-info {
+    margin-left: 25rpx;
+    margin-top: 30rpx;
+}
+
+.name {
+    color: #2c9ef9;
+    font-size: 30rpx;
+}
+
+.haoping {
+    font-size: 25rpx;
+}
+
+.moveLeft {
+    transform: translate(-120rpx,0);
+}
+
+.distance {
+    position: absolute;
+    top: 35rpx;
+    right: 35rpx;
+    display: flex;
+    align-items: center;
+}
+
+.distance>.distance_icon {
+    width: 30rpx;
+    height: 34rpx;
+    margin-right: 5rpx;
+}
+
+.distance>text {
+    color: #999;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.show_pic {
+    margin: 10rpx 0 10rpx 0;
+    max-width: 607rpx;
+}
+
+.show_pic>image {
+    width: 189rpx;
+    height: 180rpx;
+    margin: 5rpx;
+    border-radius: 10rpx;
+}
+
+.midLine {
+    word-break: break-all;
+}
+
+.type {
+    color: #5e94de;
+}
+
+.company_info {
+    width: 607rpx;
+    display: flex;
+    align-items: center;
+    height: auto;
+    border: 2rpx solid #ececec;
+    border-radius: 15rpx;
+    background-color: #fff;
+    padding: 20rpx 20rpx;
+    text-align: center;
+    margin: 15rpx 0 30rpx 0;
+    box-shadow: 0 0 25rpx #ededed;
+    position: relative;
+}
+
+.company_pic {
+    display: inline-block;
+}
+
+.company_pic>image {
+    width: 74rpx;
+    height: 85rpx;
+    border-radius: 6rpx;
+    transform: scale(1.1);
+}
+
+.showInfo {
+    display: inline-block;
+    margin: 5rpx 20rpx;
+}
+
+.showInfo1 {
+    text-align: left;
+}
+
+.company_icon {
+    color: #fff;
+    display: inline-block;
+    line-height: 100%;
+    background: linear-gradient(to bottom right,#22a7fc,#24adfc,#2abbfc);
+    border-radius: 6rpx;
+    padding: 8rpx;
+    font-size: 24rpx;
+    box-shadow: 0 0 20rpx #e1e1e1;
+}
+
+.company_name {
+    margin-left: 5rpx;
+    font-size: 26rpx;
+    font-weight: bold;
+    line-height: 100%;
+}
+
+.showInfo2 {
+    width: auto;
+    text-align: left;
+    color: #999;
+}
+
+.month_num {
+    display: inline-block;
+    margin-left: 20rpx;
+}
+
+.confirm {
+    position: absolute;
+    right: 30rpx;
+    padding: 2rpx 10rpx;
+    color: #fff;
+    background-color: #2c9ef9;
+    border-radius: 6rpx;
+    box-shadow: 0 0 20rpx #e1e1e1;
+    font-size: 20rpx;
+    background: linear-gradient(to bottom right,#22a7fc,#24adfc,#2abbfc);
+}
+
+.notconfirm {
+    position: absolute;
+    right: 30rpx;
+    padding: 2rpx 10rpx;
+    color: #fff;
+    background-color: #2c9ef9;
+    border-radius: 6rpx;
+    box-shadow: 0 0 20rpx #e1e1e1;
+    font-size: 20rpx;
+    background-color: #999;
+}

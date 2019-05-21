@@ -1,0 +1,153 @@
+<form bindsubmit="onPushSubmit" reportSubmit="true">
+    <view class="cancel-tit" wx:if="{{cancelType=='cancel'}}">请选择取消原因</view>
+    <view class="cancel-tit" wx:if="{{cancelType=='change'}}">请选择换商家原因</view>
+    <view class="cancel-tit" wx:if="{{cancelType=='complaint'}}">请选择投诉的原因</view>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='cancel'&&(sendstatus==0||sendstatus==2)}}">
+        <label class="cancel-item">
+            <view>没有商家接单</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>预约信息填写有误</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>发现更好的选择</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>个人计划有变</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='cancel'&&sendstatus==1}}">
+        <label class="cancel-item">
+            <view>商家没有及时联系我</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家报价太贵</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家无法提供服务</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>个人计划有变</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='cancel'&&sendstatus==3}}">
+        <label class="cancel-item">
+            <view>商家逾期，未能提供服务</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家要求我取消</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>报价太贵，发现更好的</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>个人计划有变</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='change'}}">
+        <label class="cancel-item">
+            <view>商家没有及时联系我</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家报价太贵</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家无法提供服务</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>个人计划有变</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='complaint'}}">
+        <label class="cancel-item">
+            <view>没有服务，订单已完成</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>申请退款，退款未到</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家骚扰</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家再次收取预约订金</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <radio-group bindchange="onChanged" wx:if="{{cancelType=='timeOut'}}">
+        <label class="cancel-item">
+            <view>已付订金，商家未接单，订单超时关闭</view>
+            <radio value="1"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>商家接单后，未提供服务，订单超时关闭</view>
+            <radio value="2"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>订单服务中，订单超时关闭</view>
+            <radio value="3"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>申请退款，退款未到，订单超时关闭</view>
+            <radio value="4"></radio>
+        </label>
+        <label class="cancel-item">
+            <view>其他</view>
+            <radio value="0"></radio>
+        </label>
+    </radio-group>
+    <view class="flex cancel-dec">
+        <textarea class="sub ml10 cancel-dec-inp" name="remark" placeholder="输入取消订单理由，提高通过率" wx:if="{{cancelType=='cancel'}}"></textarea>
+        <textarea class="sub ml10 cancel-dec-inp" name="remark" placeholder="输入换商家的理由" wx:if="{{cancelType=='change'}}"></textarea>
+        <textarea class="sub ml10 cancel-dec-inp" name="remark" placeholder="输入投诉的理由" wx:if="{{cancelType=='complaint'}}"></textarea>
+        <textarea class="sub ml10 cancel-dec-inp" name="remark" placeholder="输入申述的原因" wx:if="{{cancelType=='timeOut'}}"></textarea>
+    </view>
+    <view class="cancel-desc" wx:if="{{cancelType=='cancel'}}">订单取消后，预付款将在三个工作日内返还支付账户。</view>
+    <view class="cancel-desc" wx:if="{{cancelType=='change'}}">换商家后，您的订单将重新分配商家，请耐心等待！</view>
+    <view class="cancel-desc" wx:if="{{cancelType=='complaint'}}">确认投诉后，平台客服会尽快与您联系，请耐心等待！</view>
+    <view class="cancel-desc" wx:if="{{cancelType=='timeOut'}}">申述后，平台客服会尽快与您联系，请耐心等待！</view>
+    <view catchtap="onNavigateTo" class="cancel-desc-tips" data-name="changeBusiness" wx:if="{{cancelType=='cancel'&&sendstatus==1}}">如果您对该商家不满意，还可以
+    <text class="blue">更换商家</text>
+    </view>
+    <view class="fiexd-box">
+        <button class="cancel-sure" disabled="{{disabled}}" formType="submit" type="primary">确认操作</button>
+    </view>
+</form>

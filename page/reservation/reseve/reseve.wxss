@@ -1,0 +1,222 @@
+@import "../../../utils/form.wxss";
+
+page {
+    font-size: 32rpx;
+}
+
+.reseve-list-msg {
+    display: flex;
+    background: #fff;
+    padding: 20rpx 30rpx;
+    align-items: center;
+}
+
+.reseve-list-img {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 6rpx;
+}
+
+.reseve-list-title {
+    margin-left: 20rpx;
+    flex: 1;
+}
+
+.bargain-money-tag {
+    display: inline-block;
+    background: #F2D492;
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    padding-right: 10rpx;
+    padding-left: 6rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+    position: relative;
+}
+
+.bargain-money-tag::before,.bargain-money-tag::after {
+    content: '';
+    display: block;
+    border: 5px solid #F2D492;
+    border-left: 5px solid transparent;
+    position: absolute;
+    left: 1px;
+    transform: translateX(-100%);
+}
+
+.bargain-money-tag::before {
+    border-bottom: 5px solid transparent;
+    top: 0;
+}
+
+.bargain-money-tag::after {
+    border-top: 5px solid transparent;
+    bottom: 0;
+}
+
+.write-msg {
+    background: #fff;
+}
+
+.address-msg {
+    padding: 10rpx 30rpx;
+    display: flex;
+}
+
+.address-msg .iconfont {
+    margin-top: 25rpx;
+    margin-right: 20rpx;
+}
+
+.address-msg-text {
+    color: #888;
+    font-size: 28rpx;
+}
+
+.address-msg-mer {
+    color: #888;
+    font-size: 26rpx;
+    padding: 10rpx 0 10rpx 81rpx;
+}
+
+.address .address-msg::after,.select-address::after {
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right,#f66 0,#f66 5%,#fff 5%,#fff 8%,#4395ff 8%,#4395ff 15%,#fff 15%,#fff 18%,#f66 18%,#f66 25%,#fff 25%,#fff 28%,#4395ff 28%,#4395ff 35%,#fff 35%,#fff 38%,#f66 38%,#f66 45%,#fff 45%,#fff 48%,#4395ff 48%,#4395ff 55%,#fff 55%,#fff 58%,#f66 58%,#f66 65%,#fff 65%,#fff 68%,#4395ff 68%,#4395ff 75%,#fff 75%,#fff 78%,#f66 78%,#f66 85%,#fff 85%,#fff 88%,#4395ff 88%,#4395ff 95%,#fff 95%,#fff 98%,#f66 98%);
+    transform: skew(-30deg);
+}
+
+.title-list {
+    padding: 16rpx 30rpx;
+    line-height: 60rpx;
+}
+
+.title-list>.title {
+    width: 240rpx;
+    max-width: 240rpx;
+    margin-right: 20rpx;
+    line-height: 60rpx;
+}
+
+.title-list>.title .iconfont {
+    margin-right: 10rpx;
+}
+
+input.content {
+    height: 60rpx;
+}
+
+textarea.content {
+    width: 750rpx;
+    height: 150rpx;
+    padding: 10rpx 0;
+}
+
+.gridXb::before {
+    z-index: 1;
+}
+
+.choose-time {
+    min-width: 240rpx;
+}
+
+.price {
+    padding: 20rpx 30rpx;
+}
+
+.btn-box {
+    height: 92rpx;
+}
+
+.select-address {
+    padding: 10px 15px;
+    color: gray;
+    line-height: 60rpx;
+}
+
+.order-tip-box {
+    background: #fff;
+    font-size: 28rpx;
+}
+
+.order-tip-title {
+    color: #4395FF;
+    padding: 20rpx 30rpx;
+}
+
+.order-tip-text {
+    padding: 20rpx 30rpx;
+}
+
+page .wx-radio-input {
+    width: 40rpx;
+    height: 40rpx;
+}
+
+page .wx-checkbox-input {
+    border-radius: 50%;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+page .wx-checkbox-input-checked {
+    background: rgba(9,187,7,0.2);
+    border-color: transparent;
+}
+
+page .wx-checkbox-input.wx-checkbox-input-checked::before {
+    background: #4395FF;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.xieyi {
+    padding: 20rpx 30rpx;
+    background: #fff;
+    font-size: 28rpx;
+}
+
+.xieyi .wx-checkbox-input {
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.order-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    box-shadow: 0 0 0 1px rgba(170,170,170,0.05);
+}
+
+.order-bottom-price {
+    flex: 1;
+    padding: 0 20rpx;
+    color: #f66;
+}
+
+.order-btn button {
+    width: 320rpx;
+    border-radius: 0;
+    margin: 0;
+}
+
+.order-btn button::after {
+    border: none;
+}
+
+.picker {
+    float: left;
+}

@@ -1,0 +1,78 @@
+<view class="glo_load_view" wx:if="{{is_loaded}}">
+    <view class="loding grey mt10 mb10 tc f14">
+        <text class="mr10 loading-icon"></text>
+        <text class="mt10">正在加载中...</text>
+    </view>
+</view>
+<block wx:else>
+    <view class="user_content">
+     
+        <view catchtap="onNavigateTap" class="Member_head" data-url="../user_edit/index">
+            <image class="userinfo-avatar" mode="aspectFill" src="{{userInfo.headimgurl}}"></image>
+            <view class="userinfo_name-box">
+                <view class="userinfo_name lineText">{{userInfo.nickname}}</view>
+                <view catchtap="onNavigateTap" class="tongbu-btn" data-name="wechat_info_sync">
+                    <text class="iconfont icon-tong"></text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="my-order">
+        <view catchtap="onNavigateTap" class="my-order-tit gridXb" data-name="order" data-url="/pages/reservation/order-list/order-list">
+     
+            <view class="iconfont icon-order_head">   我的订单</view>
+            <view class="right-more arrowR">查看全部订单</view>
+        </view>
+        <view class="tc  flex orderBox mb10">
+            <view catchtap="onNavigateTap" class="sub" data-name="categoryOrder" id="1">
+                <view class="iconfont icon-chongzhi"></view>
+                <view class="subfont">待支付</view>
+                <text class="order-state-num" wx:if="{{count['unpaid']}}">{{count['unpaid']}}</text>
+            </view>
+            <view catchtap="onNavigateTap" class="sub" data-name="categoryOrder" id="2">
+                <view class="iconfont icon-dfw"></view>
+                <view class="subfont">待服务</view>
+                <text class="order-state-num" wx:if="{{count['unservices']}}">{{count['unservices']}}               </text>
+            </view>
+            <view catchtap="onNavigateTap" class="sub" data-name="categoryOrder" id="3">
+                <view class="iconfont icon-fuwu"></view>
+                <view class="subfont">服务中</view>
+                <text class="order-state-num" wx:if="{{count['unservices']}}">{{count['unservices']}}               </text>
+            </view>
+        
+            <view catchtap="onNavigateTap" class="sub" data-name="categoryOrder" id="4">
+                <view class="iconfont icon-order"></view>
+                <view class="subfont">已完成</view>
+            </view>
+            <view catchtap="onNavigateTap" class="sub" data-name="categoryOrder" id="5">
+                <view class="iconfont icon-tuikuan"></view>
+                <view class="subfont">退款</view>
+                <text class="order-state-num" wx:if="{{count['refund']}}">{{count['refund']}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="my-menu-box links">
+       
+         <view catchtap="onNavigateTap" class="my-menu-item gridXt" data-name="address" data-url="/pages/user/address/index">
+            <text class="iconfont icon-shouhuodizhi mr10"></text>
+            <text>服务地址</text>
+        </view>
+         <view catchtap="onNavigateTap" class="my-menu-item gridXt" data-name="cooperation" data-url="/pages/user/settel/settel?is_bind={{is_bind}}">
+            <text class="iconfont icon-dianhua mr10"></text>
+            <text>手机号</text>
+            <text class="ts-block">
+                <text class="redcirle" wx:if="{{is_bind==0}}"></text>
+                <text class="gray">{{is_bind==0?'未绑定':'已绑定'}}</text>
+            </text>
+        </view>
+        <view catchtap="onNavigateTap" class="my-menu-item gridXt" data-name="suggest" data-url="/pages/reservation/suggest/suggest?is_bind={{is_bind}}">
+            <text class="iconfont icon-yonghufankui mr10"></text>
+            <text>意见反馈</text>
+        </view>
+        <button catchtap="onNavigateTap" class="wechat-setting authorization-btn gridXt" data-name="wechat_setting" data-url="/wechat_setting" openType="openSetting">
+        <text class="iconfont mr10 icon-xitongshezhi"></text>
+        <text>设置</text>
+        </button>
+    </view>
+ 
+</block>

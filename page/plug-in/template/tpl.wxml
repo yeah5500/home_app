@@ -1,0 +1,18 @@
+<template name="popup-big">
+    <view class="plugPopup img-pop" wx:if="{{item.min!==true}}" wx:for="{{data}}" wx:key="{{item.market_id}}">
+        <view class="plugPopup-content">
+            <view catchtap="onPlugNavigateTap" class="img-cont" data-module="{{item.module}}" data-url="{{item.market_url}}">
+                <image mode="aspectFit" src="{{item.market_img}}"></image>
+            </view>
+            <view catchtap="onPlugSetValueTap" class="plugPop-close" data-index="{{index}}" data-is-multi="{{true}}" data-value="{\"ad_popup\":{\"min\":true}}"></view>
+        </view>
+        <view catchtap="onPlugSetValueTap" class="plugPopbg" data-index="{{index}}" data-is-multi="{{true}}" data-value="{\"ad_popup\":{\"min\":true}}"></view>
+    </view>
+    <movable-area class="rightActive-area">
+        <movable-view class="rightActive-cont" direction="vertical" inertia="true">
+            <view class="active-img" wx:if="{{item.min==true}}" wx:for="{{data}}" wx:key="{{item.market_id}}">
+                <image catchtap="onPlugNavigateTap" data-module="{{item.module}}" data-url="{{item.market_url}}" mode="aspectFit" src="{{item.market_img}}"></image>
+            </view>
+        </movable-view>
+    </movable-area>
+</template>

@@ -1,0 +1,49 @@
+<view class="order" wx:if="{{data}}">
+    <view class="order-list" wx:for="{{data}}" wx:for-index="disindex" wx:key="{{index}}">
+        <view class="avator">
+            <image class="avator_img" mode="aspectFill" src="{{item.anonymous=='1'||item.avatar==null?'/images/default.jpg':item.avatar=='/Common/icon/usericon/default_header.jpg'?'/images/default.jpg':item.avatar}}"></image>
+        </view>
+        <view class="order-info">
+            <view class="user-info">
+                <view class="name">{{item.anonymous=='1'||item.nick_name==null?'匿名用户':item.nick_name}}</view>
+                <view class="haoping">
+                    <text class="mr5">综合评价:</text>
+                    <text class="iconfont icon-xingjifull" data-index="{{index}}" wx:for="{{item.star}}" wx:key="{{index}}"></text>
+                    <text class="iconfont icon-xingjiline" data-index="{{index}}" wx:for="{{full-item.star}}" wx:key="{{index}}"></text>
+                </view>
+                <view class="distance">
+                    <image class="distance_icon" src="/images/weizhi_dw.png"></image>
+                    <text wx:if="{{item.distance<=10}}">{{item.distance}}km</text>
+                    <text wx:else>10km+</text>
+                </view>
+            </view>
+            <view class="show_pic" wx:if="{{true}}">
+                <image catchtap="onPriviewImg" data-comIndex="{{disindex}}" data-imgIndex="{{itemindex}}" src="{{itemimg}}" wx:if="{{itemimg}}" wx:for="{{item.image}}" wx:for-index="itemindex" wx:for-item="itemimg" wx:key="{{index}}"></image>
+            </view>
+            <view class="midLine">{{item.comment}}</view>
+            <view class="midLine type">#{{item.doc_title}}#</view>
+            <view catchtap="onNavigateTap" class="company_info" data-url="../business/business?bid={{item.bid}}&isshare=1">
+                <view class="company_pic">
+                    <image src="{{item.company_avatar}}"></image>
+                </view>
+                <view class="showInfo">
+                    <view class="showInfo1">
+                        <view class="company_icon">商家</view>
+                        <text class="company_name">【{{item.companytitle}}】</text>
+                    </view>
+                    <view class="showInfo2">
+                好评率:<text class="ali-blue ml5">{{item.rate}}%</text>
+                        <view class="month_num">已服务:<text class="ml5">{{item.count}}</text>单</view>
+                    </view>
+                </view>
+                <view class="confirm" wx:if="{{item.is_auth=='2'}}">已认证</view>
+                <view class="notconfirm" wx:else>未认证</view>
+            </view>
+        </view>
+    </view>
+    <view class="notanymore" wx:if="{{hasMore==false}}">没有更多了..</view>
+</view>
+<view class="no-content tc" wx:if="{{isEmpty}}">
+    <image class="no-content-img" mode="widthFix" src="http://www.ixiaochengxu.cc/resource/images/common/no-order.png"></image>
+    <view class="mt10">{{tsmsg}}</view>
+</view>

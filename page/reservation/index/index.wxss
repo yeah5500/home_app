@@ -1,0 +1,123 @@
+.swiper-box,.swiper-box swiper {
+    width: 750rpx;
+    height: 400rpx;
+    position: relative;
+}
+
+.swiper-box .slide-image {
+    width: 100%;
+    height: 100%;
+}
+
+.severs-title {
+    padding: 20rpx 40rpx;
+}
+
+.sever-item {
+    position: relative;
+    width: 33.333333%;
+    transition: all;
+    transition-duration: 0.15s;
+    transition-timing-function: linear;
+  
+}
+
+.sever-item-inner {
+    position: relative;
+    padding: 30rpx 10rpx;
+}
+
+.sever-img {
+    width: 128rpx;
+    height: 128rpx;
+    margin: 0 auto;
+    border-radius: 8rpx;
+    overflow: hidden;
+}
+
+.sever-img image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%
+}
+
+.swiper-bottom {
+    line-height: 1.2;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    padding: 10rpx 30rpx;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.wx-swiper-dots.wx-swiper-dots-horizontal {
+    right: 0;
+    left: inherit;
+    bottom: 0;
+}
+
+.contact {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    line-height: 56px;
+    text-align: center;
+}
+
+.contact::after {
+    border: 0;
+}
+
+.aside-float {
+    position: fixed;
+    right: 20rpx;
+    bottom: 40rpx;
+    width: 92rpx;
+}
+
+.float-btn {
+    height: 92rpx;
+    line-height: 92rpx;
+    border-radius: 50%;
+    font-size: 24px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.float-btn:nth-child(n+2) {
+    margin-top: 10rpx;
+}
+
+.btn-icon {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.severs-notice {
+    display: flex;
+    align-items: center;
+    padding: 0 30rpx;
+}
+
+.severs-notive-ico {
+    color: #888;
+    margin-right: 20rpx;
+}
+
+.text-swiper {
+    height: 75rpx;
+    line-height: 75rpx;
+    flex: 1;
+}
+
+.text-swiper swiper-item {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

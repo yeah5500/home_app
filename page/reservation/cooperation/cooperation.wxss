@@ -1,0 +1,18 @@
+page {
+    font-size: 32rpx;
+}
+
+.form-tit {
+    padding: 20rpx 30rpx 10rpx;
+    font-size: 28rpx;
+}
+
+.form-cont {
+    background: #fff;
+    padding: 20rpx 30rpx;
+    font-size: 30rpx;
+}
+
+.smbit-btn {
+    margin: 30rpx;
+}

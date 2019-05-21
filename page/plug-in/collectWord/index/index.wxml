@@ -1,0 +1,252 @@
+<view class="topPicBox">
+    <image class="topPic" mode="aspectFill" src="{{wordcon.word_icon_url}}"></image>
+</view>
+<view class="oBg"></view>
+<view class="oPic">
+    <image mode="widthFix" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/new/bg.png"></image>
+</view>
+<view class="mainBox">
+    <view class="dhsm">
+        <view class="lineText2">
+            <text>集齐卡片兑换</text>{{wordcon.word_name}}</view>
+    </view>
+    <view class="hdsj">
+        <text>活动时间：{{wordcon.start_time}} — {{wordcon.end_time}}</text>
+    </view>
+    <view class="wordList {{wordcon.helpstatus>=3||redstatus>=3||wordcon.start||wordcon.end?'min':''}}">
+        <view class="wordItem " wx:for="{{wordcon.allword}}" wx:key="{{index}}">
+            <view class="cishu" wx:if="{{item.num>0}}">{{item.num}}</view>
+            <view class="cishu" hidden="true" wx:else></view>
+            <view class="word {{item.num>0?'hasword':''}}">{{item.word}}</view>
+            <view class="baibian {{item.num>0?'hasword':''}}">
+                <view></view>
+            </view>
+        </view>
+    </view>
+    <view class="zjStaBox" wx:if="{{wordcon.end}}">
+        <view class="hdend">
+            <text class="mr10">活动已结束</text>
+        </view>
+    </view>
+    <view class="zjStaBox" wx:if="{{wordcon.start}}">
+        <view class="hdend">
+            <text class="mr10">活动还没开始</text>
+        </view>
+    </view>
+    <block wx:if="{{!wordcon.end&&!wordcon.start}}">
+        <view wx:if="{{is_my}}">
+            <form bindsubmit="redeem" reportSubmit="true" wx:if="{{get_word}}">
+                <view class="ljdhBox" hidden="{{redstatus>=3}}">
+                    <button class="ljdhBtn" formType="submit">立即兑换</button>
+                </view>
+            </form>
+            <view wx:else>
+                <form bindsubmit="getword" reportSubmit="true" wx:if="{{wordcon.set_num>0&&(redstatus==1||!redstatus)}}">
+                    <view class="ljdhBox">
+                        <input hidden="true" name="wid" type="text" value="{{wordcon.id}}"></input>
+                        <button class="ljdhBtn" disabled="{{canget}}" formType="submit">
+                            <text>立即抽字</text>
+                            <text class="gongjici">{{wordcon.set_num}}</text>
+                        </button>
+                    </view>
+                </form>
+                <form bindsubmit="onShareAppMessage" reportSubmit="true" wx:if="{{redstatus==2}}">
+                    <view class="ljdhBox">
+                        <button class="ljdhBtn" formType="submit" openType="share">
+                            <text>喊我兄弟来</text>
+                        </button>
+                    </view>
+                </form>
+            </view>
+            <view class="zjStaBox" wx:if="{{redstatus==3}}">
+                <view class="dhcg">
+                    <view class="ma">兑奖码：<text>{{redcode}}</text>
+                    </view>
+                    <text>领奖详情请查看活动规则</text>
+                </view>
+            </view>
+            <view class="zjStaBox" wx:if="{{redstatus==4}}">
+                <view class="dhcg">
+                    <text class="mr10"> 兑奖码：{{redcode}}</text>
+                    <text>奖品已领取</text>
+                </view>
+            </view>
+        </view>
+        <view wx:else>
+            <view class="fri" wx:if="{{wordcon.is_help}}">
+                <view class="fribot">
+                    <view class="outer disaout">
+                        <view class="inner disinner">帮ta抽一次</view>
+                    </view>
+                    <view catchtap="mygetword" class="outer wyycjout">
+                        <view class="inner wyycjinner">我也要参加</view>
+                    </view>
+                </view>
+                <view class="frifir">
+                    <text class="mr5">你为</text>
+                    <text class="mr5">{{wordcon.helpname}}</text>
+                    <text>抽中了一个“{{helpword}}”字，ta会非常感激你的!</text>
+                </view>
+            </view>
+            <view class="fri" wx:elif="{{wordcon.share}}">
+                <view class="frifir">
+                    <text class="mr5">你的好友</text>
+                    <text class="mr5">{{wordcon.helpname}}</text>
+                    <text>今天的好友帮助抽奖次数已达上限</text>
+                </view>
+                <view class="fribot">
+                    <view class="outer disaout">
+                        <view class="inner disinner">帮ta抽一次</view>
+                    </view>
+                    <view catchtap="mygetword" class="outer wyycjout">
+                        <view class="inner wyycjinner">我也要参加</view>
+                    </view>
+                </view>
+            </view>
+            <block wx:else>
+                <view class="fri" hidden="{{wordcon.helpstatus>=3}}">
+                    <view class="fribot">
+                        <view class="outer btkycout">
+                            <view catchtap="helpuser" class="inner btkycinner">帮ta抽一次</view>
+                        </view>
+                        <view catchtap="mygetword" class="outer wyycjout">
+                            <view class="inner wyycjinner">我也要参加</view>
+                        </view>
+                    </view>
+                    <view class="frifir">
+                        <text class="mr5">你的好友</text>
+                        <text class="mr5" style="color:#ff0;">{{wordcon.helpname}}</text>
+                        <text>正在参加集字活动，距离成功只有一步之遥，你可以帮ta抽一次</text>
+                    </view>
+                </view>
+                <view class="fri pyyjq" hidden="{{wordcon.helpstatus<3}}">
+                    <view class="frifir">
+                        <text class="mr5">你的好友</text>
+                        <text class="mr5">{{wordcon.helpname}}</text>
+                        <text>已经集齐了卡片获得奖品，你也可以参加哦~</text>
+                    </view>
+                    <view class="fribot ">
+                        <view catchtap="mygetword" class="outer wyycjout">
+                            <view class="inner wyycjinner">我也要参加</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </block>
+    <view class="recordBox">
+        <view class="tabBox">
+            <view catchtap="onlot" class="tab lineText {{lot?'tab_on':''}}">抽字记录</view>
+            <view catchtap="onass" class="tab lineText {{ass?'tab_on':''}}">助力榜单</view>
+            <view catchtap="onwin" class="tab lineText {{win?'tab_on':''}}">获奖记录</view>
+        </view>
+        <scroll-view scrollY bindscrolltolower="lotter_rec" class="comList" wx:if="{{lot}}">
+            <view class="comItem" wx:for="{{lotter_rec}}" wx:key="{{index}}">
+                <view class="itemLf">
+                    <image class="touxinag mr10" mode="aspectFill" src="{{item.headimgurl}}"></image>
+                    <view class="name ">{{item.nickname}}</view>
+                </view>
+                <view wx:if="{{item.help_type==2}}">帮你抽到一个 “
+            <text class="collword"> {{item.word}} </text>” 字</view>
+                <view wx:else>自己抽到一个 “
+            <text class="collword"> {{item.word}} </text>” 字</view>
+            </view>
+            <view class="norecord" hidden="{{lot_more}}">暂无记录</view>
+        </scroll-view>
+        <scroll-view scrollY class="comList" wx:if="{{ass}}">
+            <view class="comItem" wx:for="{{ass_rec}}" wx:key="{{index}}">
+                <view class="itemLf">
+                    <image class="touxinag mr10" mode="aspectFill" src="{{item.headimgurl}}"></image>
+                    <view class="name ">{{item.nickname}}</view>
+                </view>
+                <view class="">获得助力
+            <text class="f16"> {{item.get_num}} </text> 次</view>
+            </view>
+        </scroll-view>
+        <scroll-view scrollY class="comList" wx:if="{{win}}">
+            <view class="comItem hjjl" wx:for="{{win_rec}}" wx:key="{{index}}">
+                <view class="itemLf ">
+                    <image class="touxinag mr10" mode="aspectFill" src="{{item.headimgurl}}"></image>
+                    <view class="name ">{{item.nickname}}</view>
+                </view>
+                <view class="ago">{{item.wtime}} 兑换奖品成功</view>
+            </view>
+        </scroll-view>
+    </view>
+</view>
+<view class="shade_bg" hidden="{{word_hide}}">
+    <image class="luckwordPic" mode="aspectFit" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/new/light.png"></image>
+    <view class="luckword">
+        <view class="luckwordFont">{{myword}}</view>
+    </view>
+    <view catchtap="mywordinit" class="confirm">确认</view>
+</view>
+<view class="shade_bg" hidden="{{help_hide}}">
+    <image class="luckwordPic" mode="aspectFit" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/new/light.png"></image>
+    <view class="luckword">{{helpword}}</view>
+    <view catchtap="helpinit" class="confirm">确认</view>
+</view>
+<import src="../../../../wxParse/wxParse.wxml"></import>
+<view catchtap="hiderule" class="shade_bg" hidden="{{rule_hide}}">
+    <view class="ruleCon">
+        <view class="title">规则说明</view>
+        <scroll-view scrollY class="ruleScroll">
+            <template is="wxParse" data="{{wxParseData:description.nodes}}"></template>
+        </scroll-view>
+    </view>
+</view>
+<block wx:if="{{is_my==false}}">
+    <view catchtap="nohelp" class="shade_bg" hidden="{{is_help}}" wx:if="{{wordcon.nothelp}}">
+        <image class="helpChouPic" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/new/friend.png"></image>
+        <view class="hcBox">
+            <view class="hctop ">
+                <view class="tc mb5">
+                    <text>您的好友</text>
+                    <text class="ml5">{{wordcon.helpname}}</text>
+                </view>
+                <view class="tc mb5">已经成功集齐了卡片</view>
+                <view class="tc mb5">你也可以参加哦~</view>
+            </view>
+            <view catchtap="mygetword" class="frihcBox">
+                <image class="frihcBtn" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/friend1.png"></image>
+                <view class="btcycBtn">我也要参加</view>
+            </view>
+            <view class="closeBtn"></view>
+        </view>
+    </view>
+    <view catchtap="nohelp" class="shade_bg" hidden="{{is_help||wordcon.share}}" wx:else>
+        <image class="helpChouPic" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/new/friend.png"></image>
+        <view class="hcBox">
+            <view class="hctop">
+                <view class="tc mb5">
+                    <text>您的好友</text>
+                    <text class="ml5">{{wordcon.helpname}}</text>
+                </view>
+                <view class="tc mb5">正在参加集字活动，距离成功</view>
+                <view class="mb5">只有一步之遥，您可以帮ta抽</view>
+                <view>一次</view>
+            </view>
+            <view class="frihcBox">
+                <image class="frihcBtn" mode="aspectFill" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collect/friend1.png"></image>
+                <view catchtap="helpuser" class="btcycBtn">帮Ta抽一次</view>
+            </view>
+            <view class="closeBtn"></view>
+        </view>
+    </view>
+</block>
+<view class="footBar">
+    <view class="footBarFloat">
+        <form bindsubmit="showrule" reportSubmit="true">
+            <button class="ruleBtn gridFour" formType="submit">
+                <text class="iconfont icon-info mr5"></text>
+                <text>活动规则</text>
+            </button>
+        </form>
+        <form bindsubmit="onShareAppMessage" reportSubmit="true">
+            <button class="ruleBtn gridFour" formType="submit" openType="share">
+                <text class="iconfont icon-share mr5"></text>
+                <text>分享给好友</text>
+            </button>
+        </form>
+    </view>
+</view>

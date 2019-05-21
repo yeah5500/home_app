@@ -1,0 +1,30 @@
+<form bindsubmit="onPushSubmit" reportSubmit="true">
+    <view class="table-view bgwhite">
+        <radio-group bindchange="onChanged">
+            <view class="flex gridXb table-view-cell active-bg transition-duration-100" wx:for="{{data}}" wx:for-index="idx" wx:key="{{index}}">
+                <view class="choose mr10">
+                    <radio value="{{item.id}}"></radio>
+                </view>
+                <image class="media-object mr10" src="{{item.cover}}"></image>
+                <view catchtap="onNavigateTap" class="sub media-body" data-url="../detail/detail?cid={{item.id}}">
+                    <view class="title lineText">{{item.title}}</view>
+                    <view class="remark grey f12 lineText2">{{item.description}}</view>
+                </view>
+                <view class="price ml10 tr"></view>
+            </view>
+        </radio-group>
+    </view>
+    <view class="h1 empty" hidden="{{!isEmpty}}">空空如也~</view>
+    <view class="btn-box">
+        <view class="bottom-btn flex bgwhite f14">
+            <view class="sub totle-price">
+                <view class="totle-price-txt red">预约订金：￥{{earnest_total}}</view>
+                <view class="bottom-tip-ico">
+                    <text catchtap="onTipDisplay" class="iconfont icon-question"></text>
+                    <view class="bottom-tip-text" wx:if="{{tipDisplay}}">预约定金可抵扣服务费用，申请可退。</view>
+                </view>
+            </view>
+            <button disabled="{{cids==''}}" formType="submit" hoverClass="none" type="primary">提交</button>
+        </view>
+    </view>
+</form>

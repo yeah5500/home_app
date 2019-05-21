@@ -1,0 +1,46 @@
+<view class="glo_load_view" wx:if="{{isShowLoading}}">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text>
+    <text>正在努力加载</text>
+</view>
+<form bindsubmit="onPushSubmit" reportSubmit="{{true}}" wx:else>
+    <view class="r-comm">
+        <view class="rc-head gridXb">
+            <image class="business-logo mr10" mode="aspectFill" src="{{headimg}}"></image>
+            <text class="business-name">{{companytitle}}</text>
+        </view>
+        <view class="rc-comm">
+            <view class="grey mt20 tc">亲~给个评价呗！</view>
+            <view class="star-con tc">
+                <text catchtap="onReduceStart" class="iconfont icon-xingjifull" data-index="{{index}}" wx:for="{{full}}" wx:key="{{index}}"></text>
+                <text catchtap="onAddStart" class="iconfont icon-xingjiline" data-index="{{index}}" wx:for="{{line}}" wx:key="{{index}}"></text>
+            </view>
+            <view class="text-a">
+                <textarea class="gridFourRadio teS mt20" name="comment" placeholder="分享对商家的评价吧"></textarea>
+            </view>
+            <view class="upload-img">
+                <view catchtap="onPreviewTap" class="item" data-index="{{index}}" wx:for="{{uploadFiles}}" wx:key="{{index}}">
+                    <image mode="aspectFill" src="{{item.file}}"></image>
+                    <text catchtap="onDeleteImg" class="iconfont icon-close item-del" data-index="{{index}}"></text>
+                    <view class="image-info">
+                        <block wx:if="{{item.status==0}}">提交上传</block>
+                        <block wx:elif="{{item.status==1}}">正在上传</block>
+                        <block wx:elif="{{item.status==2}}">上传成功</block>
+                        <block wx:elif="{{item.status==3}}">上传失败</block>
+                    </view>
+                </view>
+                <view bindtap="onChooseImg" class="item add" wx:if="{{uploadFiles.length<max_upload_img_count}}"></view>
+            </view>
+        </view>
+    </view>
+    <view class="ml10 com-anonymous">
+        <checkbox-group bindchange="onAnonymousComment">
+            <label>
+                <checkbox value="1"></checkbox>
+                <text class="ml5">匿名评价</text>
+            </label>
+        </checkbox-group>
+    </view>
+    <view class="od-f">
+        <button class="od-f-btn" disabled="{{disabled}}" formType="submit" hoverClass="none" type="primary">提交评价</button>
+    </view>
+</form>

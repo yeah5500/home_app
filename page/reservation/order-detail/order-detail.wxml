@@ -1,0 +1,255 @@
+<view class="m20 tc grey loading" wx:if="{{showLoading}}">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text>
+    <text>正在加载...</text>
+</view>
+<block wx:else>
+    <view class="order-state">
+        <block wx:if="{{detail.code=='closePay'}}">
+            <view>
+                <view class="order-state-tit">已关闭</view>
+                <view class="order-state-dec">交易超时，订单已关闭</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daizhifu"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='timeOut'}}">
+            <view>
+                <view class="order-state-tit">订单超时关闭</view>
+                <view class="order-state-dec">交易超时，订单已关闭</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daizhifu"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='noPay'}}">
+            <view>
+                <view class="order-state-tit">待支付</view>
+                <view class="order-state-dec">请立即支付</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daizhifu"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='waitAccept'||detail.code=='waitOther'}}">
+            <view>
+                <view class="order-state-tit">待接单</view>
+                <view class="order-state-dec">等待商家接单</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daijiedan"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='waitOffer'}}">
+            <view>
+                <view class="order-state-tit">商家已接单</view>
+                <view class="order-state-dec">等待商家联系报价</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daijiedan"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='waitService'}}">
+            <view>
+                <view class="order-state-tit">商家已确认</view>
+                <view class="order-state-dec">待商家提供服务</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daijiedan"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='dealRefund'}}">
+            <view>
+                <view class="order-state-tit">退款中</view>
+                <view class="order-state-dec">等待平台审核</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-q01"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='failRefund'}}">
+            <view>
+                <view class="order-state-tit">退款失败</view>
+                <view class="order-state-dec">商家拒绝您的退款</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-tuikuanshibai"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='isRefund'}}">
+            <view>
+                <view class="order-state-tit">已退款</view>
+                <view class="order-state-dec">平台已同意您的退款</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-wancheng"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='waitComment'}}">
+            <view>
+                <view class="order-state-tit">待评价</view>
+                <view class="order-state-dec">您的评价是我们改进的阶梯</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-wancheng"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='complete'}}">
+            <view>
+                <view class="order-state-tit">已完成</view>
+                <view class="order-state-dec">订单已完成</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-wancheng"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='noHandle'}}">
+            <view>
+                <view class="order-state-tit">处理中</view>
+                <view class="order-state-dec">您的{{detail.status==7?'申诉':'投诉'}}正在处理中</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daijiedan"></text>
+            </view>
+        </block>
+        <block wx:if="{{detail.code=='handle'}}">
+            <view>
+                <view class="order-state-tit">处理完成</view>
+                <view class="order-state-dec">您的{{detail.status==7?'申诉':'投诉'}}已处理完成</view>
+            </view>
+            <view class="order-state-ico">
+                <text class="iconfont icon-daijiedan"></text>
+            </view>
+        </block>
+    </view>
+    <block wx:if="{{detail.earnest_is_refund==3}}">
+        <view class="business-reason">
+            <text class="grey iconfont icon-infofill mr10"></text>
+            <view>理由:
+        <text class="business-reason-txt">{{detail.refund_remark}}</text>
+            </view>
+        </view>
+        <view class="doubt-txt">如有疑问请联系平台。TEL:{{detail.platformphone}}</view>
+    </block>
+    <view catchtap="onNavigateTap" class="business" data-url="../business/business?bid={{detail.business}}" wx:if="{{detail.businessid&&detail.status!=0}}">
+        <view class="business-info flex">
+            <image class="business-logo" mode="aspectFill" src="{{detail.headimg}}"></image>
+            <view class="sub business-name lineText">{{detail.companytitle}}</view>
+            <view class="business-tell">
+                <text catchtap="onCallPhone" class="iconfont icon-dianhua" data-phone="{{detail.companymobile}}"></text>
+            </view>
+        </view>
+        <view class="business-msg mt10">
+            <view class="business-msg-item flex">
+                <view class="grey">服务热线：</view>
+                <view class="sub">{{detail.companymobile}}</view>
+            </view>
+            <view class="business-msg-item flex">
+                <view class="grey">商家地址：</view>
+                <view class="sub">{{detail.blameloaction}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="order-msg mt10">
+        <view class="sever-tit flex">
+            <image class="sever-titimg mr10" mode="aspectFill" src="{{detail.fenlei.cover?detail.fenlei.cover:detail.info[0].cover}}"></image>
+            <view class="sub">{{detail.fenlei.title?detail.fenlei.title:detail.info[0].title}}</view>
+        </view>
+        <view>
+            <view class="order-item flex" wx:for="{{detail.info}}" wx:key="{{index}}">
+                <image class="sever-img mr10" mode="aspectFill" src="{{item.cover}}"></image>
+                <view class="sub sever-info flexC">
+                    <view class="sever-name lineText2">{{item.title}}</view>
+                    <view class="sever-price">
+                        <view class="grey f14">x{{item.doc_num}}</view>
+                        <view class="grey f14" wx:if="{{detail.earnest_order_amount!=0&&detail.status==0}}">需支付预约订金:￥{{detail.earnest_order_amount}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="mt5 tr f14 red" wx:if="{{detail.order_amount!=0&&detail.status==6}}">需支付尾款:￥{{detail.order_amount}}</view>
+    </view>
+    <view class="order-msg mt10 f14" wx:if="{{detail.settlement_total_fee!=0}}">
+        <view class="order-msg-item flex" wx:if="{{detail.settlement_total_fee!=0}}">
+            <text class="grey mr10">社交立减金：</text>
+            <text class="sub">立减：￥{{detail.order_amount-detail.settlement_total_fee}}元 ；实际支付￥{{detail.settlement_total_fee}}元</text>
+        </view>
+    </view>
+    <view class="order-msg mt10 f14">
+        <view class="order-msg-item flex">
+            <text class="grey mr10">姓名：</text>
+            <text class="sub">{{detail.true_name}}</text>
+        </view>
+        <view class="order-msg-item flex">
+            <text class="grey mr10">电话：</text>
+            <text class="sub">{{detail.mobile}}</text>
+        </view>
+        <view class="order-msg-item flex">
+            <text class="grey mr10">地址：</text>
+            <text class="sub">{{detail.address}}</text>
+        </view>
+        <view class="order-msg-item flex">
+            <text class="grey mr10">预约时间：</text>
+            <text class="sub">{{detail.reseve_time}}</text>
+        </view>
+        <view class="order-msg-item flex">
+            <text class="grey mr10">我的备注：</text>
+            <text class="sub">{{detail.remark?detail.remark:'无'}}</text>
+        </view>
+    </view>
+    <view class="order-msg mt10 f14">
+        <view class="order-msg-item flex">
+            <text class="grey mr10">订单编号：</text>
+            <text class="sub">{{detail.number}}</text>
+        </view>
+        <view class="order-msg-item flex">
+            <text class="grey mr10">下单时间：</text>
+            <text class="sub">{{detail.create_time}}</text>
+        </view>
+        <view class="order-msg-item flex" wx:if="{{detail.status==2||detail.status==3}}">
+            <text class="grey mr10">商家报价：</text>
+            <text class="sub">{{detail.business_price}}</text>
+        </view>
+        <view wx:for="{{detail.extra_field}}" wx:key="{{index}}">
+            <view class="order-msg-item flex" wx:if="{{item.type!='images'&&item.value}}">
+                <view class="grey mr10">{{item.name}}</view>
+                <view class="sub">{{item.value}}</view>
+            </view>
+            <view class="order-msg-item flex" wx:if="{{item.type=='images'&&item.value}}">
+                <view class="grey mr10">{{item.name}}</view>
+                <view class="sub" wx:for="{{item.value}}" wx:for-item="imgurl" wx:key="{{index}}">
+                    <view class="order-img">
+                        <image mode="aspectFill" src="{{imgurl}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <block wx:if="{{detail.is_comment!=0}}">
+        <view class="my-evaluate">我的评价</view>
+        <view class="evaluate-item">
+            <view class="user-info flex">
+                <view class="star-ico ml10" wx:for="{{comment.star}}" wx:key="{{index}}">
+                    <text class="iconfont icon-xingjifull"></text>
+                </view>
+            </view>
+            <view class="evaluate-cont">
+                <view>{{comment.comment}}</view>
+                <view class="evaluate-imgbox" wx:if="{{comment.imgs!=''}}">
+                    <image catchtap="onPriviewImg" class="evaluate-img" data-index="{{index}}" mode="aspectFill" src="{{item}}" wx:for="{{comment.imgs}}" wx:key="{{index}}"></image>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="fixed-btn-box">
+        <view class="fixed-btn">
+            <button catchtap="onNavigateTap" class="botton-fixed-btn btn-cancel" data-url="../cancel/cancel?tradeNo={{detail.number}}&type=timeOut&business={{detail.business}}&source={{detail.source}}" wx:if="{{detail.code=='timeOut'}}">申述</button>
+            <button catchtap="onNavigateTap" class="botton-fixed-btn btn-cancel" data-url="../cancel/cancel?tradeNo={{detail.number}}&type=complaint&business={{detail.business}}&source={{detail.source}}" wx:if="{{detail.status==3&&detail.sendstatus==3&&detail.complaint==0}}">投诉</button>
+            <button catchtap="onNavigateTap" class="order-btn btn-cancel" data-status="{{detail.status}}" data-url="../cancel/cancel?tradeNo={{detail.number}}&source={{detail.source}}&type=cancel&business={{detail.business}}&sendstatus={{detail.sendstatus}}" wx:if="{{detail.allowCancel==1}}">取消订单</button>
+            <button catchtap="onNavigateTap" class="order-btn btn-fill" data-url="../cancel/cancel?tradeNo={{detail.number}}&type=change&business={{detail.business}}&source={{detail.source}}" wx:if="{{detail.code=='waitOffer'&&detail.type=='0'}}">换一家</button>
+            <button catchtap="onMakePayTap" class="order-btn btn-fill" data-status="{{detail.status}}" data-trade-no="{{detail.number}}" wx:if="{{detail.code=='noPay'}}">去支付</button>
+            <button bindtap="onConfirmTap" class="botton-fixed-btn" data-trade-no="{{detail.number}}" wx:if="{{detail.code=='waitService'}}">确认完成</button>
+            <button catchtap="onNavigateTap" class="botton-fixed-btn" data-url="../evaluate/evaluate?id={{detail.id}}" wx:if="{{detail.code=='waitComment'}}">去评价</button>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,14 @@
+<view class="my-menu-box links">
+    <view catchtap="onNavigateTap" class="my-menu-item gridXt" data-name="my_address" data-url="/pages/user/address/index">
+        <text class="iconfont mr10 icon-shouhuodizhi"></text>
+        <text>服务地址</text>
+    </view>
+    <button catchtap="onNavigateTap" class="wechat-setting authorization-btn gridXt" data-name="wechat_setting" data-url="/wechat_setting" openType="openSetting">
+        <text class="iconfont mr10 icon-xitongshezhi"></text>
+        <text>授权设置</text>
+    </button>
+    <view catchtap="onNavigateTap" class="my-menu-item gridXt" data-name="wechat_clear" data-url="/wechat_clear">
+        <text class="iconfont mr10 icon-duoguan-qingchuhuancun"></text>
+        <text>清除缓存</text>
+    </view>
+</view>

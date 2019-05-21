@@ -1,0 +1,130 @@
+<view class="glo_load_view" wx:if="{{isShowLoading}}">
+    <text class="iconfont icon-loading animated infinite rotate mr5"></text>
+    <text>正在努力加载</text>
+</view>
+<block wx:else>
+    <view class="head">
+        <view class="mer-img">
+            <image bindtap="onPriviewTopPic" data-img="{{data.businesshead}}" mode="aspectFill" src="{{data.businesshead}}" wx:if="{{data.businesshead}}"></image>
+            <image bindtap="onPriviewTopPic" data-img="http://xrs.duoguan.com/store_default_top_img.png" mode="aspectFill" src="http://xrs.duoguan.com/store_default_top_img.png" wx:else></image>
+        </view>
+        <view class="mer-con">
+            <view class="mer-info">
+                <image mode="aspectFill" src="{{data.headimg}}"></image>
+            </view>
+            <view class="mer-name flex1 a-item j-between">
+                <view class="black fw f19 letter mer-name-mingzi">{{data.companytitle}}</view>
+                <view class="flex1" wx:if="{{true}}">
+                    <button class="caozuo mer-fenx f13 green" openType="share">分享</button>
+                </view>
+                <view bindtap="onNavigateTap" class="pay-order f13 white" data-url="/pages/user/order_detail/order_detail" wx:if="{{false}}">立即下单</view>
+            </view>
+            <view class="yishou flex1">
+                <view class="black f12 fw yishou-view">好评率：
+          <text class="green f14">{{data.rate}}%</text>
+                </view>
+                <view class="black f12 fw yishou-view">已服务
+          <text class="green f14">{{nums}}</text>单</view>
+            </view>
+            <view class="security flex1">
+                <view class="security-view flex1 a-item" wx:if="{{data.is_auth==2}}">
+                    <image mode="aspectFill" src="/images/rengz.png"></image>
+                    <text class="f12 fw">认证商家</text>
+                </view>
+                <view class="security-view flex1 a-item">
+                    <image mode="aspectFit" src="/images/zybz.png"></image>
+                    <text class="f12 fw">专业标准</text>
+                </view>
+                <view class="security-view flex1 a-item">
+                    <image mode="aspectFill" src="/images/yzfw.png"></image>
+                    <text class="f12 fw">优质服务</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fenge"></view>
+    <view class="content">
+        <view class="content-head flex1 a-item j-around">
+            <view bindtap="showCon" class="f17 black fw content-head-title {{tps.active}}" data-index="{{tps.tips}}" wx:for="{{nav}}" wx:for-item="tps" wx:key="tpindex">
+        {{tps.title}}
+        <text class="f13" wx:if="{{tps.sub}}">{{tips[0].count}}</text>
+            </view>
+        </view>
+        <view class="server" wx:if="{{nav.length==3&&nav[0].active=='active'}}">
+            <view class="server-list" wx:for="{{data.businessServer}}" wx:for-index="pserIndex" wx:for-item="pserItem" wx:key="{{pserIndex}}">
+                <view class="server-list-title f16 fw black">{{pserItem.title}}</view>
+                <view class="server-list-con flex1">
+                    <view bindtap="onNavigateTap" class="server-item flex1 a-item" data-type="reseve" data-url="/pages/reservation/reseve/reseve?storeid={{data.id}}&ids={{serItem.id}}" wx:for="{{pserItem.sub}}" wx:for-index="serIndex" wx:for-item="serItem" wx:key="{{serIndex}}">
+                        <image class="server-item-img" mode="aspectFit" src="{{serItem.cover}}"></image>
+                        <text class="f13 black mt6">{{serItem.title}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="eval" wx:if="{{nav.length==2&&nav[0].active=='active'||nav.length==3&&nav[1].active=='active'}}">
+            <view class="eval-head flex1 a-item">
+                <view class="green eval-head-num ">{{data.rate%10==0?data.rate/10+'.0':data.rate/10}}</view>
+                <view>
+                    <view>
+                        <text class="green iconfont icon-star f17" wx:for="{{data.rate/20}}" wx:key="cs"></text>
+                        <text class="hui iconfont icon-star f17" wx:for="{{5-data.rate/20+(data.rate%20==0?0:-1)}}" wx:key="cs"></text>
+                    </view>
+                    <view class="f13 gray">共{{tips[0].count}}条评价</view>
+                </view>
+            </view>
+            <view class="eval-label flex1">
+                <view bindtap="onCatchTip" class="eval-label-item f13 black {{subtip.active}}" data-index="{{subtipindex}}" wx:for="{{tips}}" wx:for-index="subtipindex" wx:for-item="subtip" wx:key="subtipindex">{{subtip.title}}({{subtip.count}})</view>
+            </view>
+            <view class="eval-user-list" wx:for="{{comment}}" wx:for-index="comIndex" wx:for-item="comItem" wx:key="{{comIndex}}">
+                <view class="eval-user-title flex1 a-item j-between">
+                    <view class="flex1 a-item">
+                        <image class="eval-user-info" mode="aspectFit" src="{{comItem.headimg}}" wx:if="{{comItem.anonymous==0&&comItem.headimg.length>10}}"></image>
+                        <image class="eval-user-info" mode="aspectFit" src="/images/default.jpg" wx:else></image>
+                        <view>
+                            <view class="green f16" wx:if="{{comItem.anonymous==0}}">{{comItem.nickname}}</view>
+                            <view class="green f16" wx:if="{{comItem.anonymous==1}}">匿名评价</view>
+                            <view class="f12 gray flex1 a-item">
+                打分
+                <text class="iconfont icon-star green" wx:for="{{comItem.star}}" wx:key="cs"></text>
+                                <text class="iconfont icon-star hui" wx:for="{{5-comItem.star}}" wx:key="cs"></text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="hui f13">{{comItem.createtime}}</view>
+                </view>
+                <view bindtap="onNavigateTap" class="eval-user-txt black f15" data-url="/pages/find/detail/detail" wx:if="{{comItem.comment!=''}}">
+          {{comItem.comment}}
+        </view>
+                <view class="eval-user-imglist flex1" wx:if="{{comItem.image.length>=1}}">
+                    <image catchtap="onPriviewImg" class="eval-user-img" data-comIndex="{{comIndex}}" data-imgIndex="{{imgIndex}}" mode="aspectFill" src="{{imgItme}}" wx:if="{{imgItme!=''}}" wx:for="{{comItem.image}}" wx:for-index="imgIndex" wx:for-item="imgItme" wx:key="{{index}}"></image>
+                </view>
+                <view class="eval-mer f12 gray" wx:if="{{comItem.businessRecall}}">
+                    <text class="green">商家回复:</text>{{comItem.businessRecall}}
+        </view>
+                <view class="eval-label-foot f16 ">#{{comItem.docname}}#</view>
+            </view>
+        </view>
+        <view class="merchant" wx:if="{{nav.length==2&&nav[1].active=='active'||nav.length==3&&nav[2].active=='active'}}">
+            <view class="merchant-item">
+                <view class="merchant-item-title f16 black fw">商家介绍</view>
+                <view class="merchant-item-con black f13">{{data.description}}</view>
+            </view>
+            <view class="merchant-item">
+                <view class="merchant-item-title f16 black fw">商家地址</view>
+                <view class="merchant-item-con black f13">{{data.businessaddress}}</view>
+            </view>
+            <view class="merchant-item" wx:if="{{data.businessImg.length>0}}">
+                <view class="merchant-item-title f16 black fw">商家照片</view>
+                <view class="merchant-item-con flex1">
+                    <image catchtap="onPriviewPic" class="merchant-item-img" data-comIndex="{{bsindex}}" data-imgIndex="{{bsindex}}" mode="aspectFill" src="{{bsval}}" wx:for="{{data.businessImg}}" wx:for-index="bsindex" wx:for-item="bsval" wx:key="bsindex"></image>
+                </view>
+            </view>
+            <view wx:else>
+                <view class="merchant-item-title f16 black fw">商家照片</view>
+                <view class="merchant-item-con flex1">
+                    <image class="merchant-item-img" mode="aspectFill" src="/images/mer-img.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

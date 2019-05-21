@@ -1,0 +1,234 @@
+
+.iconfont {
+    font-size: inherit;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.blue {
+    color: #488cf2;
+}
+
+.orange {
+    color: #f26848;
+}
+
+.red {
+    color: #f30;
+}
+
+.order-tit-box {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    line-height: 92rpx;
+    margin-bottom: 20rpx;
+}
+
+.order-tit-state {
+    flex: 1;
+}
+
+.order-tit-state:active {
+    background: #fafafa;
+}
+
+.order-tit-state.active {
+    color: #4395FF;
+    position: relative;
+}
+
+.order-tit-state.active::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 30rpx;
+    right: 30rpx;
+    background: currentColor;
+    height: 6rpx;
+}
+
+.no-content-img {
+    width: 50%;
+}
+
+.order-list {
+    background: #fff;
+    border-radius: 6rpx;
+    margin-bottom: 20rpx;
+    padding: 0 30rpx;
+    word-break: break-all;
+}
+
+.order-list:first-child {
+    margin-top: 0;
+}
+
+.case-title {
+    align-items: center;
+    padding: 40rpx 0 20rpx;
+}
+
+.case-name {
+    font-weight: bold;
+}
+
+.order-state {
+    color: #f66;
+}
+
+.order-state.grey {
+    color: #aaa;
+}
+
+.order-state.success {
+    color: #aaa;
+}
+
+.order-state.success::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(45deg);
+    margin-left: 10rpx;
+}
+
+.order-info {
+    padding: 20rpx 0;
+}
+
+.order-info-list {
+    padding: 6rpx 0;
+}
+
+.order-list-tit {
+    width: 180rpx;
+    color: #666;
+}
+
+.order-list-tit .iconfont {
+    font-size: 36rpx;
+    margin-right: 20rpx;
+}
+
+.business {
+    padding: 20rpx 0;
+    border-radius: 12rpx;
+    display: flex;
+    align-items: center;
+}
+
+.business-logo {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-right: 20rpx;
+}
+
+.business-name {
+    flex: 1;
+    overflow: hidden;
+    font-size: 32rpx;
+}
+
+.business-tell {
+    font-size: 40rpx;
+    color: #4395FF;
+}
+
+.order-refunds {
+    background: #fafafa;
+    text-align: center;
+}
+
+.order-refunds-txt {
+    font-weight: bold;
+}
+
+.time {
+    line-height: 50rpx;
+}
+
+.pay,.refund {
+    display: inline-block;
+}
+
+.pay button,.refund button {
+    padding: 0 20rpx;
+    line-height: 60rpx;
+    border-radius: 2rpx;
+    width: auto;
+    font-size: 28rpx;
+    transition: all 0.15s linear;
+}
+
+.pay button::after,.refund button::after {
+    border: none;
+}
+
+.refund button {
+    color: gray;
+}
+
+.refund button:active {
+    color: red;
+}
+
+button.shibai {
+    color: #f66;
+}
+
+.order-price {
+    text-align: right;
+    padding-bottom: 20rpx;
+}
+
+.btn-box {
+    text-align: right;
+    padding: 30rpx 0;
+}
+
+.order-btn {
+    background: transparent;
+    display: inline-block;
+    font-size: 28rpx;
+    line-height: 56rpx;
+    border-radius: 6rpx;
+    color: #4395FF;
+    vertical-align: bottom;
+}
+
+.order-btn.btn-cancel {
+    color: #bbb;
+}
+
+.order-btn.btn-cancel::after {
+    border: none;
+}
+
+.order-btn::after {
+    border-radius: 6rpx;
+    border-color: currentColor;
+}
+
+.order-btn.grey {
+    color: #888;
+}
+
+.order-btn:nth-child(n+2) {
+    margin-left: 24rpx;
+}
+
+.btn-fill {
+    background: #4395FF;
+    color: #fff;
+}
+
+.btn-fill::after {
+    border: none;
+}

@@ -1,0 +1,92 @@
+<view class="reseve-list-msg mb10">
+    <image class="reseve-list-img" mode="aspectFill" src="{{docInfo['cover']}}"></image>
+    <view class="reseve-list-title">{{docInfo['title']}}</view>
+    <view wx:if="{{docInfo['earnest_price']>0&&storeid==0}}">
+        <text class="bargain-money-tag">订金</text>
+        <text class="red">￥{{docInfo['earnest_price']}}</text>
+    </view>
+    <view wx:else>
+        <text class="red">免订金</text>
+    </view>
+</view>
+<form bindsubmit="onPushSubmit" hidden="{{!config}}" reportSubmit="true">
+    <view class="write-msg">
+        <view catchtap="onChooseAddrTap" class="select-address arrowR" wx:if="{{!mobile}}">
+            <text class="iconfont icon-locationfill green mr5"></text>
+            <text>选择地址，一秒下单</text>
+        </view>
+        <view catchtap="onChooseAddrTap" class="address-msg arrowR" wx:if="{{mobile}}">
+            <text class="iconfont icon-ico_site"></text>
+            <view>
+                <view class="address-msg-name">
+                    <text>{{true_name}} {{mobile}}</text>
+                </view>
+                <view class="address-msg-text gridXb">
+                    <text>{{address}}</text>
+                </view>
+                <input hidden="hidden" name="true_name" value="{{true_name}}"></input>
+                <input hidden="hidden" name="mobile" value="{{mobile}}"></input>
+                <input hidden="hidden" name="address" value="{{address}}"></input>
+            </view>
+        </view>
+        <view class="address-msg-mer gridXb" wx:if="{{addressId!=0&&storeid==0}}">
+            <block wx:if="{{businessNum<=3}}">
+                <block wx:if="{{businessNum==0}}">
+                    <text class="red">提示：</text>附近暂无商家，正在拓展市场~
+        </block>
+                <block wx:else>
+          附近
+          <text class="green">{{businessNum}}</text>个商家
+          <text>附近商家较少，等待时间可能较长</text>
+                </block>
+            </block>
+            <block wx:else>
+        附近
+        <text class="green">{{businessNum}}</text>个商家
+      </block>
+        </view>
+        <view class="title-list gridXb flex">
+            <view class="title">
+                <text class="iconfont icon-icon-time"></text> 服务时间：
+      </view>
+            <view class="choose-time grey sub flex">
+                <picker bindchange="changeTimePicker" bindcolumnchange="changeTimeColumnPicker" mode="multiSelector" range="{{reserveDate}}">
+                    <view class="picker">
+            {{nowTime}}
+          </view>
+                </picker>
+            </view>
+        </view>
+        <view class="title-list gridXb flex">
+            <view class="title">备注：</view>
+            <textarea class="content sub grey" name="remark" placeholder="备注越详细，匹配越精准"></textarea>
+        </view>
+    </view>
+    <view class="order-tip-box mt10">
+        <view class="order-tip-title gridXb">温馨提示</view>
+        <view class="order-tip-text">
+            <view>1、本订单的定金费用将会在商家实际服务后，结算费用时抵扣。</view>
+            <view>2、为了保障您的权益，若商家在结算费用时未扣除定金部分，可在服务完成后对该订单进行投诉。</view>
+            <view>3、发票由商家提供如有疑问请致电{{config['sms_phone']}}咨询。</view>
+        </view>
+    </view>
+    <view class="xieyi gridXt">
+        <radio-group>
+            <label>
+                <radio checked="true"></radio>
+                <text>我已查看并同意</text>
+                <text catchtap="onNavigationTo" class="green" data-url="../protocol/protocol?type=user">《用户协议》</text>
+                <text catchtap="onNavigationTo" class="green" data-url="../protocol/protocol?type=privacy">《隐私条款》</text>
+            </label>
+        </radio-group>
+    </view>
+    <view class="btn-box">
+        <view class="order-btn">
+            <view class="order-bottom-price">
+                <text wx:if="{{docInfo.earnest_price>0&&storeid==0}}">预约订金：￥{{docInfo.earnest_price}}</text>
+                <text wx:else>免订金</text>
+            </view>
+            <button disabled="{{disabled}}" formType="submit" hoverClass="none" type="primary">立即预约</button>
+        </view>
+    </view>
+</form>

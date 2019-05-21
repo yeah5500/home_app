@@ -1,0 +1,20 @@
+<import src="../../../wxParse/wxParse.wxml"></import>
+<form bindsubmit="onPushSubmit" reportSubmit="true">
+    <view class="content">
+        <view class="content-list bgwhite" wx:for="{{data}}" wx:for-index="idx" wx:key="*this">
+            <view class="subtitle green f16 gridXb">{{item.title}}</view>
+            <view class="body mt15">
+                <template is="wxParse" data="{{wxParseData:item.content.nodes}}"></template>
+            </view>
+        </view>
+    </view>
+    <view class="footer-box">
+        <view class="footer flex bgwhite">
+            <view class="sub price">
+                <text class="red f16" wx:if="{{earnest_total>0}}">预约订金：￥{{earnest_total}}</text>
+                <text class="green f16" wx:else>预付款：免费</text>
+            </view>
+            <button class="sub" disabled="{{!ids?'disabled':''}}" formType="submit" hoverClass="none" type="primary">立即预约</button>
+        </view>
+    </view>
+</form>

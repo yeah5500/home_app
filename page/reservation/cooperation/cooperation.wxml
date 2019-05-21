@@ -1,0 +1,18 @@
+<form bindsubmit="formSubmit" reportSubmit="true">
+    <view class="form-tit">姓名：</view>
+    <view class="form-cont">
+        <input name="user_true_name" placeholder="请填写您的真实姓名"></input>
+    </view>
+    <view class="form-tit">联系电话：</view>
+    <view class="form-cont">
+        <input bindinput="check_phone_bind" name="user_phone" placeholder="请填写您的联系电话" type="number"></input>
+    </view>
+    <view class="form-tit">手机验证：</view>
+    <view class="form-cont flex">
+        <input class="sub" name="user_phone_yzm" placeholder="请填写您的验证码"></input>
+        <button bindtap="send_phone_code_bind" disabled="{{yzm_btn_disabled}}" size="mini" type="primary">{{yzm_btn_text}}</button>
+    </view>
+    <view class="smbit-btn">
+        <button formType="submit" hoverClass="none" type="primary">立即预约</button>
+    </view>
+</form>

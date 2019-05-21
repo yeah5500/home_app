@@ -1,0 +1,31 @@
+<view class="swiper-box">
+    <swiper autoplay="true" duration="300" indicatorDots="true" interval="5000">
+        <swiper-item wx:for="{{config.imgs}}" wx:key="*this">
+            <image class="slide-image" mode="aspectFill" src="/images/default1.png"></image>
+        </swiper-item>
+    </swiper>
+    <view class="swiper-bottom f18" wx:if="{{config.name}}">{{config.name}}</view>
+</view>
+<view class="severs">
+    <view class="severs-notice">
+        <text class="severs-notive-ico iconfont icon-notificationfill"></text>
+        <swiper autoplay="{{true}}" circular="{{true}}" class="text-swiper" interval="{{3000}}" vertical="{{true}}" wx:if="{{contents}}">
+            <swiper-item wx:for="{{contents}}" wx:key="{{index}}">
+                <text>{{item}}</text>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="clearfix tc">
+        <view bindtap="onOpenCategoryTap" class="sever-item bgwhite fl active-bg gridXb" data-index="{{index}}" wx:for="{{data}}" wx:key="{{index}}">
+            <view class="sever-item-inner gridYr">
+                <view class="sever-img">
+                    <image mode="aspectFill" src="{{item.cover}}"></image>
+                </view>
+                <view class="lineText mt10">
+                    <text>{{item.title}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
